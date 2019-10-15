@@ -2,4 +2,4 @@
 
 This repository is about to deploy an quantitative trading algorithm based on the application of support vector machine.
 
-The idea and design of experiment draw heavily from this [paper](https://search.proquest.com/docview/2136876869?pq-origsite=gscholar).
+The idea and design of experiment draw heavily from this paper [Application of Support Vector Machine on Algorithmic Trading](https://search.proquest.com/docview/2136876869?pq-origsite=gscholar).
