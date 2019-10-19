@@ -6,10 +6,10 @@ The idea and design of experiment are based on this paper [Application of Suppor
 
 # Contents:
 
-- [SVM and Random Forest](#SVM and Random Forest)
-- [Design of Experiments](#Design of Experiments)
-  * [Up Trend](#Up-Trend)
-  * [Down Trend](#Down-Trend)
+- [SVM and Random Forest](#SVM-and-Random-Forest)
+- [Design of Experiments](#Design-of-Experiments)
+  * [Up Trend](#U#p-Trend)
+  * [Down Trend](##Down-Trend)
 - [Results](#Results)
 - [Reference](##Reference)
 
