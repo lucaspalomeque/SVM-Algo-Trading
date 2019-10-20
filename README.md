@@ -12,11 +12,13 @@
 - [Experiments Design](#Experiments-Desgin)
   * [Quantitative Algorithms](##Quantitative-Algorithms)
   * [Machine Learning Algorithms](##Machine-Learning-Algorithms)
-_ [Backtesting Process](#Backtesting-Process)
+- [Backtesting Process](#Backtesting-Process)
   * [Up Trend](##Up-Trend)
   * [Down Trend](##Down-Trend)
-- [Results](#Results)
-- [Reference](##Reference)
+- [Statistics Analysis](#Statistics-Analysis)
+  * [Up Trend](##Up-Trend)
+  * [Down Trend](##Down-Trend)
+- [Conclusion](##Conclusion)
 
 # Introduction
 The following research replicates the paper [Application of Support Vector Machine on Algorithmic Trading](https://search.proquest.com/docview/2136876869?pq-origsite=gscholar) published on Int'l Conf. Artificial Intelligence (ICAI'18). The paper provides a thoughtful analysis regarding the use of machine learning techniques applied to algorithmic trading using common indexes such as the S&P500 and the Chicago Board Options Exchange Market Volatility Index (VIX). A trading simulation is carried out in order to test the efficiency of the algorithms in up trending and down trending periods. Statistical and economic performance measures are compared in order to discuss the most effective technique. The inputs used in the analysis are well-known quantitative indicators such as the Relative Strength Index and the Moving Average Convergence-Divergence. The relevance of the results lies in the use of separated training models for each kind of trend.
@@ -71,11 +73,46 @@ The table below shows the parameters configuration for the SVM algorithm.
 ![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/svm_para.png)
 
 # Backtesting Process
+To evaluate the proposed algorithms a backtester system is designed. Backtester is a tool that can output performance measures receiving as inputs the price data and the algorithm order vectors. Backtester must be configured with an initial capital input and commissions, which are chosen to be __$10000__ and __0.35%__ of the cost from each operation, as it is an average value for brokerage fees. Also the backtester requires a logic in order to perform the operations. In this research, the chosen logic is as follows:  
+
+“In up trending markets, there can be only one long operation ongoing that must be exited in order to start a new one, in down trending markets there can be only one short operation on going that must be exited in order to start a new one. In either situation, the operation must be opened with the total capital available in the account at each moment”.  
+
+This module also provides the performance of the Buy and Hold (BH) strategy as a benchmark for the evaluation. BH strategy uses the following rule: “A purchase is made during the first day of evaluation and sale is made at last day”.   
 ## Up Trend
+![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/up.png)
+## Down Trend
+![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/down.png)
+
+# Statistical Analysis
+The measures used in this paper are the following ones.  
+
+- The __return (R)__ is obtained subtracting the equity of each day from evaluation period. It is also presented as a percentage over the base capital, adding the sum of returns and subtracting them from the initial capital set.  
+
+- The __Sharpe Ratio (SR)__ is a measure of risk of the investment which is calculated as the returns divided by their standard deviation.  
+
+- The __Maximum Drawdown (MDD)__ is a measure of risk which displays the biggest performance fall of the return. It is calculated by subtracting the peak minus the valley after each fall, and getting the maximum from them.  
+
+- The __volatility (Vol)__ is a measure of risk which displays the variation of the returns over time. It is calculated as the standard deviation of the return divided by their mean.  
+
+R and SR are required to be as high as possible, with a negative cipher denoting loss, and a positive one denoting benefit. MDD and Vol are required to be as low as possible, and must be necessarily positive numbers. They are usually presented in percentage.  
+
+## Up Trend
+As shown in table, most algorithms output a positive income, except RSI one, which incurs in losses. So far, the volatility and MDD from all algorithms tend to be similar, which is caused due to the short size of the testing period However, this size was required due to the short duration of the trends that were required to analyze.  
+
+The B&H strategy outperforms every algorithm in the up trending period, which is the expected result due to the strong dependence with price movement presented by this strategy, which is also a weakness in a down trend.  
+
+The SVM algorithm has a pretty high performance in the up trending period, although not being able to beat the B&H.  
+![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/up_stat.png)
 
 ## Down Trend
+In down trending periods, the first fact to notice is the greatly performance loss that all quantitative algorithms presents compared to the up trending periods. This fact supports the initial premise regarding the need of machine learning techniques in order to adapt to changing situations in the stock market.  
 
+Furthermore, SVM and Random Forest shows a strong performance. The machine learning algorithm is able to make profitable decision, especially in down trending period.  
+![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/down_stat.png)  
 
-# Results
+# Conclusion
+The SVM and Random Forest algorithm has been trained using different trainings for each period, and fed with common technical indicators such as RSI and MACD, and the VIX index.  
 
-# Reference
+The results show that the SVM and Random Forest doesn’t return the best results in up trending periods, being outperformed by B&H systems. However, it shows a strong performance in down trending periods making it more suitable than quantitative techniques and other machine learning systems.  
+
+As further work, it would be advisable to apply the Stop Loss filter as well as a more detailed parameter-optimization process.
