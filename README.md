@@ -9,9 +9,10 @@
 - [Strategy Scope](#Strategy-Scope)
   * [Indexs and Data Resources](##Indexs-and-Data-Resources)
   * [Analyzed Periods](##Analyzed-Periods)
-- [Experiments Design](#Experiments Desgin)
+- [Experiments Design](#Experiments-Desgin)
   * [Quantitative Algorithms](##Quantitative-Algorithms)
-_ [Backtesting Process]
+  * [Machine Learning Algorithms](##Machine-Learning-Algorithms)
+_ [Backtesting Process](#Backtesting-Process)
   * [Up Trend](##Up-Trend)
   * [Down Trend](##Down-Trend)
 - [Results](#Results)
@@ -22,7 +23,7 @@ The following research replicates the paper [Application of Support Vector Machi
 
 # Background
 ## Technical Analysis
-The technical indicators that are used are the following ones.
+The technical indicators that are used are the following ones.  
 The __Relative Strength Index (RSI)__ is an oscillator that compares the magnitude of a stock's recent gains to the magnitude of its recent losses and turns that information into a number that ranges from 0 to 100.  
 
 The __Moving Average Convergence Divergence (MACD)__ is an oscillator that turns two moving averages, into a momentum oscillator by subtracting the longer moving average from the shorter moving average. It also relies in a third moving average called the MACD line in order to trigger the operation signals.  
@@ -49,6 +50,25 @@ The quantitative algorithms follow the same structure: each one of them returns 
 
 The table below shows the trading rules for each one of the quantitative algorithms.  
 ![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/indicator.png)
+
+## Machine Learning Algorithms
+Machine learning algorithms require a different approach. In first place, a training process is performed. This training is equal for every machine learning algorithm used in this paper, including SVM one. This training requires a set of inputs and an expected output for the training period. The 10 inputs to the training are the following ones:  
+
+- RSI (14) at close.
+- RSI (14) at previous day’s close.
+- RSI (14) at previous two day’s close.
+- MACD (26, 12, 9) at close.
+- MACD (26, 12, 9) at previous day’s close.
+- MACD (26, 12, 9) at previous two days’ close. 
+- VIX data at close.
+- VIX data at previous day’s close.
+- VIX data at previous two day’s close.
+- S&P500 change at close.  
+
+An expected output is also needed in order to feed the training process. This output is obtained by designing a special algorithm which runs taking in consideration the whole training data vector (making it non-realistic for a test period). The trading rules used by the algorithm are as follows: “__Purchase orders are generated when the price from five days later has increased, whereas, sell orders are generated when it has decreased__”.
+
+The table below shows the parameters configuration for the SVM algorithm.  
+![](https://github.com/VictorXXXXX/SVM-Algo-Trading/blob/master/images/svm_para.png)
 
 # Backtesting Process
 ## Up Trend
