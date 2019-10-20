@@ -4,7 +4,7 @@
 
 - [Introduction](#Introduction)
 - [Background](#Background)
-  * [Technical Analysis](##Technical-Analysis)
+  * [Technical Analysis](#Technical-Analysis)
   * [Machine Learning](##Machine-Learning)
 - [Strategy Scope](#Strategy-Scope)
   * [Indexs and Data Resources](##Indexs-and-Data-Resources)
