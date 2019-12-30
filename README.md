@@ -116,4 +116,3 @@ The SVM and Random Forest algorithm has been trained using different trainings f
 The results show that the SVM and Random Forest doesn’t return the best results in up trending periods, being outperformed by B&H systems. However, it shows a strong performance in down trending periods making it more suitable than quantitative techniques and other machine learning systems.  
 
 As further work, it would be advisable to apply the Stop Loss filter as well as a more detailed parameter-optimization process.  
-
